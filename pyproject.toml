@@ -1,0 +1,16 @@
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry>=0.12"]
+
+[tool]
+[tool.poetry]
+authors = ["Jonah Monaghan <jonah.james.monaghan@gmail.com>"]
+description = ""
+name = "yahtzeebot"
+version = "0.1.0"
+[tool.poetry.dependencies]
+pip = "^20.0"
+python = "^3.7"
+discord = "^1.0"
+python-dotenv = "^0.11.0"
+[tool.poetry.dev-dependencies]
