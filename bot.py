@@ -1,7 +1,7 @@
 #bot.py
 #Initial code by: https://realpython.com/how-to-make-a-discord-bot-python/
 #Author: Jonah Monaghan
-#02-26-2020
+#2020-02-26
 
 #Imports
 import os
