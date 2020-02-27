@@ -227,6 +227,15 @@ async def join(ctx):
 
 @bot.command()
 async def getplayers(ctx):
+    """A function that prints all of the players in the game
+    Fetches all the names in the players list and prints them
+
+    Args
+    ctx - The message that triggered the command
+
+    Returns
+    sendStr - A string that the bot will send back to the player as feedback
+    """
     strSend = "The current players are:\n"
     if len(players) > 0:
         for player in players:
