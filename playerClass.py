@@ -41,6 +41,7 @@ class Player:
 #Roll Counter Functions 
   def MakeRoll(self):
     self.rollCounter = self.rollCounter - 1
+    self.SetChosen(False)
   
   def GetRollCount(self):
     return int(self.rollCounter)

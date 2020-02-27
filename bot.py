@@ -168,6 +168,7 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
     """
     
     chooserName = ctx.message.author.display_name
+    chooserMention = ctx.message.author.mention
     chooser = None
     for player in players:
         if player.name == chooserName:
@@ -177,6 +178,8 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
         arg = int(arg)
     except ValueError:
         print(f'Cannot convert to int')
+    
+    sendStr = chooserMention
 
     if isinstance(arg, str):
         if str(arg).lower() == "all":
@@ -184,20 +187,25 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
             for value in chooser.GetTableDice():
               chooser.SetHoldDice(value)
               chooser.SetChosen(True)
-            print(f'All dice saved')
+            #print(f'All dice saved')
+            sendStr += " all dice have been saved. You are now done rolling for this turn."
         elif str(arg).lower() == "none":
             chooser.SetChosen(True)
-            print(f'No dice saved')
+            #print(f'No dice saved')
+            sendStr += " none of the dice have been saved. Nothing good eh?"
         else:
-            await ctx.send(":x:That is not a valid parameter:x:")
+            sendStr = ":x:That is not a valid parameter:x:"
     elif isinstance(arg, int):
         print(f'Its a number!')
         if (arg > 0 and arg < chooser.GetRemainingDice()):
             tmpTableDice = chooser.GetTableDice()
             chooser.SetHoldDice(tmpTableDice[arg - 1])
-            print(f'Dice number ' + str(arg) + ' saved')
+            #print(f'Dice number ' + str(arg) + ' saved')
+            sendStr += " dice number " + str(arg) + " saved."
         else:
-            await ctx.send(":x:That is not a valid parameter:x:")
+            sendStr = ":x:That is not a valid parameter:x:"
+    
+    await ctx.send(sendStr)
 
 
 @bot.command()
