@@ -33,17 +33,10 @@ async def on_ready():
 #When the player rolls
 @bot.command()
 async def roll(ctx):
-    """A command that rolls the available dice for the player
+    """A command that rolls the available dice for the player. Cannot be used again until the !keep command is used. For every turn, players have a maximum of three rolls. Takes no parameters.
     
-    This command will check how many dice the player has left and roll them (d6). 
-    The dice are then moved to the player's "table". The players cannot use the 
-    !roll command again until they use the !keep command.
-
-    Args
-    ctx - The message that triggered the command
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback 
+    Example: 
+    !roll
     """
     #Get the name of the author to compare to players
     rollerName = ctx.message.author.display_name
@@ -85,15 +78,10 @@ async def roll(ctx):
 
 @bot.command()
 async def holds(ctx):
-    """A function that gets the player's held dice
-    Accesses and returns the player's GetHoldDice() function, 
-    Refer to playerClass.Player.GetHoldDice() for more info.
-
-    Args
-    ctx - The message that triggered the command
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback 
+    """Gets the player's current held dice, these are the dice that the player used the !keep command on. Takes no parameters.
+     
+    Example: 
+    !holds
     """
 
     #Get the name of the author and compare it to players
@@ -118,15 +106,10 @@ async def holds(ctx):
 
 @bot.command()
 async def table(ctx):
-    """A function that gets the player's table dice
-    Accesses and returns the player's GetTableDice() function, 
-    Refer to playerClass.Player.GetTableDice() for more info.
-
-    Args
-    ctx - The message that triggered the command
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback 
+    """Gets the player's table dice, these are the dice that are available for the player to !keep after they've used the !roll command. Takes no parameters. 
+    
+    Example:
+    !table
     """
     #Get the name of the author and compare it to players
     holderName = ctx.message.author.display_name
@@ -149,22 +132,14 @@ async def table(ctx):
 
 @bot.command()
 async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
-    """A function that the player uses to choose which of the table dice they'll keep
-    Fetches a player's table dice and gives them the opportunity to choose
-    which dice (if any) they'll move to their held dice
+    """Lets the player uses to choose which of the table dice they'll keep after a !roll command. Takes multiple parameters: parameter 1 <Mandatory>: (dieIndex, "all", "none")||parameters 2-5 [Optional]: (dieIndex).
 
-    Args
-    ctx - The message that triggered the command
-    
-    arg [Mandatory] [String OR int] - Used to choose any of the following:
-    - If the player keeps no dice
-    - If the player keeps all dice
-    - What die number (index) the player will keep
-
-    die1-5 - The die number (index) of the die they would like to keep
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback 
+    Examples:
+    !keep all
+    !keep none
+    !keep 1 2
+    !keep 3 5 2
+    etc.
     """
     
     chooserName = ctx.message.author.display_name
@@ -210,16 +185,10 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
 
 @bot.command()
 async def join(ctx):
-    """A function that has the player joining the list of players
-    Takes the author's display name and creates a player that uses that name
-    Checks if author's name is already in the list of players and makes sure that
-    players won't be registered twice
+    """Joins the user to the game. Users cannot join the game more than once. Takes no parameters.
 
-    Args
-    ctx - The message that triggered the command
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback 
+    Example:
+    !join
     """
     name = ctx.message.author.display_name
     isPlaying = False
@@ -235,14 +204,10 @@ async def join(ctx):
 
 @bot.command()
 async def getplayers(ctx):
-    """A function that prints all of the players in the game
-    Fetches all the names in the players list and prints them
+    """Prints the names of all the players in the game. Takes no parameters.
 
-    Args
-    ctx - The message that triggered the command
-
-    Returns
-    sendStr - A string that the bot will send back to the player as feedback
+    Example:
+    !getplayers
     """
     strSend = "The current players are:\n"
     if len(players) > 0:
