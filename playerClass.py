@@ -54,3 +54,30 @@ class Player:
     self.dice.clear()
 
 #Scoring Functions
+
+#Scoring Chart
+#Ones: Add all of the ones together (Score: 1 - 5 [val * qnty])
+#Twos: Add all of the twos together (Score: 2 - 10 [val * qnty])
+#Threes: Add all of the threes together (Score: 3 - 15 [val * qnty])
+#Fours: Add all of the fours together (Score: 4 - 20 [val * qnty])
+#Fives: Add all of the fives together (Score: 5 - 25 [val * qnty])
+#Sixes: Add all of the sixes together (Score 6 - 30 [val * qnty])
+#Three of a Kind: Add the value of all dice as long as three are matching (Score: 5 - 36 [valAllDice])
+#Four of a Kind: Add the value of all dice as long as four are matching (Score: 5 - 36 [valAllDice])
+#Full House: If three of kind and pair (Score: 25 [CONST])
+#Small Straight: If four dice have consecutive values (Score: 30 [CONST])
+#Large Straight: If all five dice have consecutive values (Score: 40 [CONST])
+#Yahtzee!: If all five dice are the same value (Score: 50 or 100 [CONST])
+#Chance: No conditions (5 - 36 [valAllDice])
+#Upper bonus: If Ones - Sixes score more than 63 players receive a bonus (Score: 35 [CONST])
+
+#Rules
+#Player rolls dice up to 3 times
+#After player has chosen all dice or runs out rolls scoring will begin
+#Player use their available dice to choose what section they will fill out (Sections can only be filled out once [Except Yahtzee])
+#If no section can be filled out players must scratch a section out so that it may not be used
+#If a player gets a Yahtzee (5 identical dice), they will receive 50 points.
+#After the first Yahtzee, if players get any additional Yahtzees they will receive 100 points rather than the traditional 50
+#Once scoring is done the players will roll again starting the cycle over again
+#Once players cannot fill in any sections they will wait till the game is done
+#Once all players cannot fill in any sections the game will be over
