@@ -124,8 +124,11 @@ async def table(ctx):
     
     #If there is a holder in the player list
     if holder != None:
-      sendStr = holderMention + " your table has:\n"
-      sendStr += str(holder.GetTableDice())
+      if(holder.GetTableDice()):
+        sendStr = holderMention + " your table has:\n"
+        sendStr += str(holder.GetTableDice())
+      else:
+        sendStr = holderMention + " you do not have any dice on the table! Try !roll."
     else:
       sendStr = ":x:" + holderName + " is not a player:x:"
     await ctx.send(sendStr)
@@ -162,12 +165,12 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
             for value in chooser.GetTableDice():
               chooser.SetHoldDice(value)
               chooser.SetChosen(True)
-            #print(f'All dice saved')
             sendStr += " all dice have been saved. You are now done rolling for this turn."
+            chooser.ClearTableDice()
         elif str(arg).lower() == "none":
             chooser.SetChosen(True)
-            #print(f'No dice saved')
             sendStr += " none of the dice have been saved. Nothing good eh?"
+            chooser.ClearTableDice()
         else:
             sendStr = ":x:That is not a valid parameter:x:"
     elif isinstance(arg, int):
@@ -175,8 +178,8 @@ async def keep(ctx, arg, die2=0, die3=0, die4=0, die5=0):
         if (arg > 0 and arg < chooser.GetRemainingDice()):
             tmpTableDice = chooser.GetTableDice()
             chooser.SetHoldDice(tmpTableDice[arg - 1])
-            #print(f'Dice number ' + str(arg) + ' saved')
             sendStr += " dice number " + str(arg) + " saved."
+            chooser.ClearTableDice()
         else:
             sendStr = ":x:That is not a valid parameter:x:"
     

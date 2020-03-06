@@ -26,6 +26,9 @@ class Player:
   def SetTableDice(self, value):
     self.tableDice.append(value)
 
+  def ClearTableDice(self):
+    self.tableDice.clear()
+  
   def GetTableDice(self):
     return self.tableDice
   
